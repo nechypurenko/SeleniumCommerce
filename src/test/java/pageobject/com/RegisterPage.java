@@ -1,6 +1,7 @@
 package pageobject.com;
 
 
+import org.junit.Assert;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
@@ -13,6 +14,7 @@ public class RegisterPage  {
     protected By passwTextBox = By.id("Password");
     protected By confirmPasswTextBox = By.id("ConfirmPassword");
     protected By registBtn = By.id("register-button");
+    protected By userLogin = By.xpath("html/body/div[5]/div[1]/div[1]/div[2]/div[1]/ul/li[1]/a");
 
 
     public RegisterPage(WebDriver driver) {
@@ -57,6 +59,11 @@ public class RegisterPage  {
 
     public void clickRegistBtn(){
         driver.findElement(registBtn).click();
+
+    }
+
+    public void assertNameLogin(){
+        Assert.assertEquals("User Login", driver.findElement(userLogin).getText(),"firs@mailinator.com");
 
     }
 

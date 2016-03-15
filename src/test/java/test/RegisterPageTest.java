@@ -7,41 +7,32 @@ import org.openqa.selenium.firefox.FirefoxDriver;
 import org.testng.annotations.AfterTest;
 import org.testng.annotations.BeforeTest;
 import org.testng.annotations.Test;
+import pageobject.com.CreateRegisterPage;
 import pageobject.com.MainPage;
 import pageobject.com.RegisterPage;
+import setting.SetTear;
 
 import java.util.concurrent.TimeUnit;
 
 /**
  * Created by sasha on 14.03.16.
  */
-public class RegisterPageTest {
-
-    private WebDriver driver;
+public class RegisterPageTest extends SetTear{
 
 
-
-
-    @BeforeTest(alwaysRun = true)
-
-    public void setUp() throws Exception {
-        driver = new FirefoxDriver();
-        driver.manage().timeouts().implicitlyWait(30, TimeUnit.SECONDS);
-        driver.get("http://demo.nopcommerce.com/");
-    }
     @Test
 
     public void testRegister() throws Exception {
         MainPage mainPage = new MainPage(driver);
         RegisterPage registerPage = new RegisterPage(driver);
+        CreateRegisterPage createRegisterPage = new CreateRegisterPage(driver);
         mainPage.clickRegisterLink();
-        registerPage.register("sasha", "saha", "firsttest@mailinator.com", "1234qwer", "1234qwer" );
+        registerPage.register("sasha", "saha", "firs@mailinator.com", "1234qwer", "1234qwer" );
+        createRegisterPage.assertSucces();
+        createRegisterPage.cliclContinueBtn();
+        registerPage.assertNameLogin();
 
     }
 
-    @AfterTest
 
-    public void tearDown() throws  Exception{
-        driver.quit();
-    }
 }
