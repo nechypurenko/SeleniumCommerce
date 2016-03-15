@@ -9,34 +9,28 @@ import org.testng.annotations.Test;
 import pageobject.com.LoginPage;
 import pageobject.com.MainPage;
 import pageobject.com.RegisterPage;
+import setting.SetTear;
 
 import java.util.concurrent.TimeUnit;
 
 /**
  * Created by sasha on 14.03.16.
  */
-public class LoginPageTest {
+public class LoginPageTest extends SetTear {
 
-    private WebDriver driver;
-    private MainPage mainPage;
-    private LoginPage loginPage;
-
-
-    @BeforeTest
-
-    public void setUp() throws Exception {
-        driver = new FirefoxDriver();
-        driver.manage().timeouts().implicitlyWait(30, TimeUnit.SECONDS);
-        driver.get("http://demo.nopcommerce.com/");
-    }
     @Test
 
+    public void Login(){
+        MainPage mainPage = new MainPage(driver);
+        LoginPage logPage = new LoginPage(driver);
+        mainPage.clickLoginrLink();
+        logPage.EnterLogin("firs@mailinator.com");
+        logPage.EnterLogin("1234qwer");
 
-
-
-    @AfterTest
-
-    public void tearDown() throws  Exception{
-        driver.quit();
     }
+
+
+
+
+
 }
