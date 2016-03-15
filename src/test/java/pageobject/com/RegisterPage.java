@@ -5,14 +5,14 @@ import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 
-public class RegisterPage {
-    private WebDriver driver;
-    private By firstNameTextBox = By.id("FirstName");
-    private By lastNameTextBox = By.id("LastName");
-    private By emailTextBox = By.id("Email");
-    private By passwTextBox = By.id("Password");
-    private By confirmPasswTextBox = By.id("ConfirmPassword");
-    private By registBtn = By.id("register-button");
+public class RegisterPage  {
+    protected WebDriver driver;
+    protected By firstNameTextBox = By.id("FirstName");
+    protected By lastNameTextBox = By.id("LastName");
+    protected By emailTextBox = By.id("Email");
+    protected By passwTextBox = By.id("Password");
+    protected By confirmPasswTextBox = By.id("ConfirmPassword");
+    protected By registBtn = By.id("register-button");
 
 
     public RegisterPage(WebDriver driver) {
@@ -20,8 +20,12 @@ public class RegisterPage {
 
     }
 
+
+
     public void enterFirstName(String firstName ){
         WebElement firstNameTxtBox = driver.findElement(firstNameTextBox);
+        firstNameTxtBox.click();
+        firstNameTxtBox.clear();
         if (firstNameTxtBox.isDisplayed())
             firstNameTxtBox.sendKeys(firstName);
     }
@@ -51,10 +55,19 @@ public class RegisterPage {
     }
 
 
-    public void clickRegistBtn(String registButton){
-        WebElement regBtn = driver.findElement(registBtn);
-        if (regBtn.isDisplayed())
-            regBtn.click();
+    public void clickRegistBtn(){
+        driver.findElement(registBtn).click();
+
+    }
+
+    public void register(String firstName, String lastName, String email , String passw, String confirmPass){
+        enterFirstName(firstName);
+        enterLastName(lastName);
+        enterEmail(email);
+        enterPassword(passw);
+        enterConfirmPass(confirmPass);
+        clickRegistBtn();
+
     }
 
 

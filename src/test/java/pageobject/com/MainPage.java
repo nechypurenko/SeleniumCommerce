@@ -10,6 +10,7 @@ public class MainPage {
     private By registerLink = By.xpath("html/body/div[5]/div[1]/div[1]/div[2]/div[1]/ul/li[1]/a");
 
 
+
     public MainPage(WebDriver driver) {
         this.driver = driver;
 
@@ -22,6 +23,8 @@ public class MainPage {
        else System.out.println("Element not fpund");
        return new RegisterPage(driver);
    }
+
+
 
 }
 
